@@ -4,13 +4,8 @@
         <script src="./angular.min.js"></script>
         <script>
             var app= angular.module('swatchSquare', []);
-            app.controller('nameCtrl', function($scope) {
-                $scope.name = "friend";
-                $scope.place = "the Internet";
-            });
             
             app.controller('swatchCtrl', function($scope) {
-                $scope.hue = "#ecf";
                 $scope.colors = [];
                 for (var i = 0; i < 16; i++) {
                     $scope.colors.push(randomColor());
@@ -42,12 +37,9 @@
             }
 
             #header {
-                margin-top: 10px;
-                margin-bottom: 10px;
-                margin-left: auto;
-                margin-right: auto;
-                padding: 20px;
-                color: #fff;
+                margin: 16px;
+                padding: 4px;
+                color: #ccc;
                 font-size: 20px;
                 text-align: center;
             }
@@ -57,13 +49,9 @@
                 margin-bottom: 10px;
                 margin-left: auto;
                 margin-right: auto;
-                width: 100%;
-            }
-
-            #square .row {
-                margin: auto;
+                padding: 8px;
                 width: 464;
-                height: 116;
+                height: 464;
                 background: #000;
             }
 
@@ -82,30 +70,7 @@
             <p>Here are {{ 4 * 4 }} squares of different colors.</p>
         </div>
         <div id="square" ng-controller="swatchCtrl">
-            <div class="row">
-                <div class="tile" style="background-color: {{ colors[0] }}"></div>
-                <div class="tile" style="background-color: {{ colors[1] }}"></div>
-                <div class="tile" style="background-color: {{ colors[2] }}"></div>
-                <div class="tile" style="background-color: {{ colors[3] }}"></div>
-            </div>
-            <div class="row">
-                <div class="tile" style="background-color: {{ colors[4] }}"></div>
-                <div class="tile" style="background-color: {{ colors[5] }}"></div>
-                <div class="tile" style="background-color: {{ colors[6] }}"></div>
-                <div class="tile" style="background-color: {{ colors[7] }}"></div>
-            </div>
-            <div class="row">
-                <div class="tile" style="background-color: {{ colors[8] }}"></div>
-                <div class="tile" style="background-color: {{ colors[9] }}"></div>
-                <div class="tile" style="background-color: {{ colors[10] }}"></div>
-                <div class="tile" style="background-color: {{ colors[11] }}"></div>
-            </div>
-            <div class="row">
-                <div class="tile" style="background-color: {{ colors[12] }}"></div>
-                <div class="tile" style="background-color: {{ colors[13] }}"></div>
-                <div class="tile" style="background-color: {{ colors[14] }}"></div>
-                <div class="tile" style="background-color: {{ colors[15] }}"></div>
-            </div>
+            <div class="tile" ng-repeat="c in colors" style="background-color:{{c}}"></div>
         </div>
     </body>
 </html>
