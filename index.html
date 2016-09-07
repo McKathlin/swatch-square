@@ -7,30 +7,22 @@
             
             app.controller('swatchCtrl', function($scope) {
                 $scope.colors = [];
+                
                 for (var i = 0; i < 16; i++) {
-                    $scope.colors.push(randomColor());
+                    var newColor = {
+                        red: Math.floor(Math.random() * 256),
+                        green: Math.floor(Math.random() * 256),
+                        blue: Math.floor(Math.random() * 256)
+                    };
+                    $scope.colors.push(newColor);
                 }
+                
+                $scope.writeColor = function(color) {
+                    return "#" + color.red.toString(16) + color.green.toString(16) + color.blue.toString(16);
+                };
             });
-            
-            randomColor = function() {
-                return "#" + randomHexDigit() + randomHexDigit() + randomHexDigit();
-            };
-
-            randomHexDigit = function() {
-                var value = Math.floor(Math.random() * 16);
-                switch (value) {
-                    case 10: return "a"; break;
-                    case 11: return "b"; break;
-                    case 12: return "c"; break;
-                    case 13: return "d"; break;
-                    case 14: return "e"; break;
-                    case 15: return "f"; break;
-                    default: return value.toString();
-                }
-            };
         </script>
         <style>
-
             body {
                 background: #000;
                 font-family: arial;
@@ -70,7 +62,7 @@
             <p>Here are {{ 4 * 4 }} squares of different colors.</p>
         </div>
         <div id="square" ng-controller="swatchCtrl">
-            <div class="tile" ng-repeat="c in colors" style="background-color:{{c}}"></div>
+            <div class="tile" ng-repeat="c in colors" style="background-color:{{writeColor(c)}}"></div>
         </div>
     </body>
 </html>
