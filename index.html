@@ -6,20 +6,31 @@
             var app= angular.module('swatchSquare', []);
             
             app.controller('swatchCtrl', function($scope) {
-                $scope.colors = [];
+                $scope.SWATCH_COUNT = 16;
                 
-                for (var i = 0; i < 16; i++) {
-                    var newColor = {
-                        red: Math.floor(Math.random() * 256),
-                        green: Math.floor(Math.random() * 256),
-                        blue: Math.floor(Math.random() * 256)
-                    };
-                    $scope.colors.push(newColor);
+                $scope.loadColors = function() {
+                    $scope.colors = [];
+                    for (var i = 0; i < $scope.SWATCH_COUNT; i++) {
+                        var newColor = {
+                            red: Math.floor(Math.random() * 16),
+                            green: Math.floor(Math.random() * 16),
+                            blue: Math.floor(Math.random() * 16)
+                        };
+                        $scope.colors.push(newColor);
+                    }
                 }
                 
                 $scope.writeColor = function(color) {
                     return "#" + color.red.toString(16) + color.green.toString(16) + color.blue.toString(16);
                 };
+
+                $scope.invertColor = function(color) {
+                    color.red = 15 - color.red;
+                    color.green = 15 - color.green;
+                    color.blue = 15 - color.blue;
+                }
+
+                $scope.loadColors();
             });
         </script>
         <style>
@@ -42,15 +53,15 @@
                 margin-left: auto;
                 margin-right: auto;
                 padding: 8px;
-                width: 464;
-                height: 464;
+                width: 504;
+                height: 504;
                 background: #000;
             }
 
             #square .tile {
                 float: left;
-                height: 100px;
-                width: 100px;
+                height: 110px;
+                width: 110px;
                 margin: 8px;
                 background: #888;
             }
@@ -59,10 +70,13 @@
     <body ng-app="swatchSquare">
         <div id="header">
             <h1>Swatch Square</h1>
-            <p>Here are {{ 4 * 4 }} squares of different colors.</p>
+            <p>Click a swatch to invert its color.</p>
         </div>
         <div id="square" ng-controller="swatchCtrl">
-            <div class="tile" ng-repeat="c in colors" style="background-color:{{writeColor(c)}}"></div>
+            <div class="tile"
+                ng-repeat="c in colors"
+                ng-click="invertColor(c)"
+                style="background-color:{{writeColor(c)}}"></div>
         </div>
     </body>
 </html>
