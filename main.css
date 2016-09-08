@@ -1,0 +1,53 @@
+
+body {
+    background: #000;
+    font-family: arial;
+}
+
+#header {
+    margin: 16px;
+    padding: 4px;
+    color: #bbb;
+    font-size: 20px;
+    text-align: center;
+}
+
+#header h1 {
+    color: #ccc;
+}
+
+#square {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px;
+    width: 504;
+    height: 504;
+    background: #000;
+}
+
+#square .tile {
+    float: left;
+    height: 110px;
+    width: 110px;
+    margin: 8px;
+    background: #888;
+}
+
+#footer p {
+    margin-top: 40;
+    font-size: 15px;
+    color: #888;
+    text-align: center;
+}
+
+#footer a:link, a:visited {
+    text-decoration: none;
+    color: #ccc;
+}
+
+#footer a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
